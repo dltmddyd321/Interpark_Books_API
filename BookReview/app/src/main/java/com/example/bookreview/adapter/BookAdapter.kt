@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bookreview.databinding.ItemBookBinding
 import com.example.bookreview.model.Book
 
@@ -13,9 +14,15 @@ class BookAdapter: ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
 
         fun bind(bookModel : Book) {
             binding.titleTextView.text = bookModel.title
+            binding.descriptionTextView.text = bookModel.description
             //View에 데이터 연결을 위해 바인딩 접근
+
+            Glide
+                .with(binding.coverImg.context) //가져와서 반영할 context
+                .load(bookModel.coverSmallUrl) //가져오는 데이터의 Url 값
+                .into(binding.coverImg) //최종적으로 반영할 위치
         }
-    }
+    }//Glide : 이미지 데이터를 가져오는 라이브러리
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
         return BookItemViewHolder(ItemBookBinding.inflate(LayoutInflater.from(parent.context), parent, false))
