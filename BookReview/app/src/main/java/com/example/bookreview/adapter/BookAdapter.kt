@@ -9,13 +9,17 @@ import com.bumptech.glide.Glide
 import com.example.bookreview.databinding.ItemBookBinding
 import com.example.bookreview.model.Book
 
-class BookAdapter: ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
+class BookAdapter(private val itemClickedListener: (Book) -> Unit): ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
     inner class BookItemViewHolder(private val binding: ItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(bookModel : Book) {
             binding.titleTextView.text = bookModel.title
             binding.descriptionTextView.text = bookModel.description
             //View에 데이터 연결을 위해 바인딩 접근
+
+            binding.root.setOnClickListener {
+                itemClickedListener(bookModel)
+            } //root를 클릭하면 itemClickedListener 함수 호출
 
             Glide
                 .with(binding.coverImg.context) //가져와서 반영할 context
