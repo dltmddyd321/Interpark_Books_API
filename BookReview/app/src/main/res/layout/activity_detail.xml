@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -49,9 +50,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/coverImgView"/>
 
+            <LinearLayout
+                android:id="@+id/likeOrDislikeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+                >
+
+                <ImageButton
+                    android:id="@+id/likeBtn"
+                    android:layout_width="50dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/hart"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/dislikeBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/nohart1"
+                    android:layout_marginLeft="20dp"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"/>
+
+            </LinearLayout>
+
             <EditText
                 android:id="@+id/reviewEditText"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+                app:layout_constraintTop_toBottomOf="@id/likeOrDislikeLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/saveBtn"
                 app:layout_constraintEnd_toEndOf="parent"
